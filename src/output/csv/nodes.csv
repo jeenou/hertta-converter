@@ -1,0 +1,7 @@
+node,is_commodity,is_state,is_res,is_market,is_inflow,state_max,state_min,in_max,out_max,initial_state,state_loss_proportional,scenario_independent_state,is_temp,t_e_conversion,residual_value
+fuel_oil,1,0,0,0,0,0,0,0,0,0,0.0,0,0,1,0
+fuel_ng,1,0,0,0,0,0,0,0,0,0,0.0,0,0,1,0
+elc,0,0,0,0,0,0,0,0,0,0,0.0,0,0,1,0
+veks_grid,1,0,0,0,0,0,0,0,0,0,0.0,0,0,1,0
+dh_htf,0,0,0,0,1,0,0,0,0,0,0.0,0,0,1,0
+pit_heat_sto,0,1,0,0,0,3300,0,30,30,800,1e-05,0,0,1,0

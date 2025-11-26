@@ -1,0 +1,2 @@
+market,market_type,node,processgroup,direction,realisation,reserve_type,is_bid,is_limited,min_bid,max_bid,fee
+elc_spot,energy,elc,p1,none,0,none,0,0,0,0,0

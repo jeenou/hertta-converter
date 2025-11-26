@@ -1,0 +1,37 @@
+Unnamed: 0,Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4,Unnamed: 5,Unnamed: 6,Unnamed: 7,Unnamed: 8,Unnamed: 9,Unnamed: 10
+,,,,,,,,,,
+"Lämpöpumpun sähkövero vaikuttaa olevan niin, että on vero käytetylle dähkölle, mutta kuitenkin maksimivero tuotetulle lämmölle. Eli riippuu pumpun hyötysuhteesta",,,,,,,,,,
+"Eli jos COP > 4,136, niin sähkön vero on määräävä, muuten lämmön vero on määräävä",,,,,,,,,,
+,,,,,,,,,,
+https://www.euroheat.org/member-area/outlook-2025/denmark,,,,,,,,,,
+,DKK/MWh,DKK/GJ,DKK/tonCO2,,,,,,,
+Consumption of electricity:,4,,,,,,,,,
+"Consumption of coal, oil and naturalk gas",124.56,34.6,,,,,,,,
+CO2 tax (for input),291.24,80.9,,,,,,,,
+"CO2 tax, emission-based",,,85.2,,,,,,,
+"CO2 tax, emission-based, ng",18.699174666500433,,,0.21947388106221163,tonCO2/MWh,,,,,
+"CO2 tax, emission-based, oil",23.338415770711535,,,0.27392506773135605,tonCO2 / MWh oil,,,,,
+"""Energy tax on DH""",230.4,64,,,,,,,,
+,,,,,,,,,,
+Assumed elc_transfer,125,,,,,,,,,
+,,,,,,,,,,
+Carbon Permits (NG),122.01899860139864,,,,,,,,,
+Carbon permits (oil),161.94254545454547,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+UNITS,Efficiency,Capacity,Fuel VOM,Heat VOM,elc transfer,carbon permits,carbon tax,carbon tax emission-based,fuel use tax,"""DH energy tax"" (assumed to be 0"
+solar_collector,1,1.4,0,0,0,0,0,,0,0
+malervej_boiler1,0.8,15,556.5181732678991,0,0,122.01899860139864,291.24,18.699174666500433,124.56,0
+malervej_boiler2,0.8,15,556.5181732678991,0,0,122.01899860139864,291.24,18.699174666500433,124.56,0
+helges_hoj_boiler,0.8,15,601.0809612252569,0,0,161.94254545454547,291.24,23.338415770711535,124.56,0
+molleholmen_boiler1,0.8,8,601.0809612252569,0,0,161.94254545454547,291.24,23.338415770711535,124.56,0
+molleholmen_boiler2,0.8,8,601.0809612252569,0,0,161.94254545454547,291.24,23.338415770711535,124.56,0
+HP_rock,3,0.8,129,0,125,0,0,,4,0
+HP_EVC,3,1.4,129,0,125,0,0,,4,0
+HP_EVC2,3,2,129,0,125,0,0,,4,0
+HP_City2,3,1.3,129,0,125,0,0,,4,0
+HP_Nordea,3,1.5,129,0,125,0,0,,4,0
+HP_Mohov,3,1.5,129,0,125,0,0,,4,0
+HP_globalconnect1,3,2,129,0,125,0,0,,4,0
+HP_globalconnect2,3,2,129,0,125,0,0,,4,0
+HP_copenhagen_markets,3,3.2,129,0,125,0,0,,4,0

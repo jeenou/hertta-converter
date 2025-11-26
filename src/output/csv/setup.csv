@@ -1,0 +1,11 @@
+parameter,value
+use_market_bids,1.0
+use_reserves,0.0
+use_reserve_realisation,0.0
+use_node_dummy_variables,1.0
+node_dummy_variable_cost,10000.0
+use_ramp_dummy_variables,1.0
+ramp_dummy_variable_cost,10000.0
+common_start_timesteps,0.0
+common_end_timesteps,0.0
+common_scenario_name,

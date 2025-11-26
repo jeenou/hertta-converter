@@ -1,0 +1,16 @@
+{
+  "query": "\n    mutation CreateInputDataSetup($setup: InputDataSetupInput!) {\n      createInputDataSetup(setupUpdate: $setup) {\n        errors {\n          field\n          message\n        }\n      }\n    }\n    ",
+  "variables": {
+    "setup": {
+      "useMarketBids": true,
+      "useReserves": false,
+      "useReserveRealisation": false,
+      "useNodeDummyVariables": true,
+      "nodeDummyVariableCost": 10000.0,
+      "useRampDummyVariables": true,
+      "rampDummyVariableCost": 10000.0,
+      "commonTimesteps": 0,
+      "commonScenarioName": null
+    }
+  }
+}
