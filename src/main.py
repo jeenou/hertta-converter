@@ -9,16 +9,19 @@ from parse_nodes import (
     parse_node_states_from_nodes_csv,
 )
 from parse_processes import parse_processes_csv_to_newprocesses
+from parse_groups import parse_groups_csv
 from graphql_utils import (
     build_setup_payload,
     save_payload_to_file,
     save_node_payloads_to_files,
     save_node_state_payloads_to_files,
     save_process_payloads_to_files,
+        save_group_payloads_to_files,
     send_setup,
     send_nodes,
     send_node_states,
     send_processes,
+    send_groups,
 )
 
 # --- Config ---
@@ -90,6 +93,21 @@ def main(excel_file: str) -> None:
 
     save_process_payloads_to_files(processes_inputs, dirs["graphql"])
 
+        # ---------- groups.csv → groups & memberships ----------
+
+    groups_csv_path = os.path.join(dirs["csv"], "groups.csv")
+    print(f"\nReading groups from: {groups_csv_path}")
+    groups_data = parse_groups_csv(groups_csv_path)
+
+    total_groups = len(groups_data["node_groups"]) + len(groups_data["process_groups"])
+    total_memberships = len(groups_data["node_memberships"]) + len(groups_data["process_memberships"])
+    print(f"\nParsed {total_groups} groups and {total_memberships} memberships.")
+    if total_groups or total_memberships:
+        print("Groups data preview:")
+        print(json.dumps(groups_data, indent=2))
+
+    save_group_payloads_to_files(groups_data, dirs["graphql"])
+
     # ---------- optionally send to GraphQL server ----------
 
     if SEND_TO_SERVER:
@@ -105,6 +123,9 @@ def main(excel_file: str) -> None:
         print(f"\nSending {len(processes_inputs)} process mutations to {GRAPHQL_URL}")
         send_processes(GRAPHQL_URL, processes_inputs, headers=GRAPHQL_HEADERS)
 
+        print("\nSending group mutations to GraphQL")
+        send_groups(GRAPHQL_URL, groups_data, headers=GRAPHQL_HEADERS)
+        
     print("\nAll done.")
 
 

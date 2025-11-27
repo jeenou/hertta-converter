@@ -292,3 +292,143 @@ def send_processes(
         payload = build_process_payload(proc)
         send_graphql_payload(url, payload, headers=headers)
 
+# 5) Groups (createNodeGroup / createProcessGroup / addNodeToGroup / addProcessToGroup)
+
+_NODE_GROUP_MUTATION = """
+mutation CreateNodeGroup($name: String!) {
+  createNodeGroup(name: $name) {
+    message
+  }
+}
+"""
+
+_PROCESS_GROUP_MUTATION = """
+mutation CreateProcessGroup($name: String!) {
+  createProcessGroup(name: $name) {
+    message
+  }
+}
+"""
+
+_ADD_NODE_TO_GROUP_MUTATION = """
+mutation AddNodeToGroup($nodeName: String!, $groupName: String!) {
+  addNodeToGroup(nodeName: $nodeName, groupName: $groupName) {
+    message
+  }
+}
+"""
+
+_ADD_PROCESS_TO_GROUP_MUTATION = """
+mutation AddProcessToGroup($processName: String!, $groupName: String!) {
+  addProcessToGroup(processName: $processName, groupName: $groupName) {
+    message
+  }
+}
+"""
+
+
+def build_create_node_group_payload(name: str) -> Dict[str, Any]:
+    return build_graphql_payload(_NODE_GROUP_MUTATION, {"name": name})
+
+
+def build_create_process_group_payload(name: str) -> Dict[str, Any]:
+    return build_graphql_payload(_PROCESS_GROUP_MUTATION, {"name": name})
+
+
+def build_add_node_to_group_payload(node_name: str, group_name: str) -> Dict[str, Any]:
+    vars_ = {"nodeName": node_name, "groupName": group_name}
+    return build_graphql_payload(_ADD_NODE_TO_GROUP_MUTATION, vars_)
+
+
+def build_add_process_to_group_payload(process_name: str, group_name: str) -> Dict[str, Any]:
+    vars_ = {"processName": process_name, "groupName": group_name}
+    return build_graphql_payload(_ADD_PROCESS_TO_GROUP_MUTATION, vars_)
+
+
+def save_group_payloads_to_files(groups_data: Dict[str, Any], graphql_dir: str) -> None:
+    """
+    groups_data is the dict returned by parse_groups_csv.
+    Writes JSONs for:
+      - create node groups
+      - create process groups
+      - add node/process to groups
+    """
+    os.makedirs(graphql_dir, exist_ok=True)
+
+    node_group_payloads: List[Dict[str, Any]] = []
+    for name in groups_data["node_groups"]:
+        payload = build_create_node_group_payload(name)
+        node_group_payloads.append(payload)
+        safe = "".join(c for c in name if c.isalnum() or c in ("_", "-", " ")).strip() or "node_group"
+        safe = safe.replace(" ", "_")
+        save_payload_to_file(payload, graphql_dir, f"node_group_{safe}.json")
+
+    if node_group_payloads:
+        save_payload_to_file(node_group_payloads, graphql_dir, "node_groups_all.json")
+
+    process_group_payloads: List[Dict[str, Any]] = []
+    for name in groups_data["process_groups"]:
+        payload = build_create_process_group_payload(name)
+        process_group_payloads.append(payload)
+        safe = "".join(c for c in name if c.isalnum() or c in ("_", "-", " ")).strip() or "process_group"
+        safe = safe.replace(" ", "_")
+        save_payload_to_file(payload, graphql_dir, f"process_group_{safe}.json")
+
+    if process_group_payloads:
+        save_payload_to_file(process_group_payloads, graphql_dir, "process_groups_all.json")
+
+    node_membership_payloads: List[Dict[str, Any]] = []
+    for m in groups_data["node_memberships"]:
+        payload = build_add_node_to_group_payload(m["nodeName"], m["groupName"])
+        node_membership_payloads.append(payload)
+    if node_membership_payloads:
+        save_payload_to_file(node_membership_payloads, graphql_dir, "node_group_memberships_all.json")
+
+    process_membership_payloads: List[Dict[str, Any]] = []
+    for m in groups_data["process_memberships"]:
+        payload = build_add_process_to_group_payload(m["processName"], m["groupName"])
+        process_membership_payloads.append(payload)
+    if process_membership_payloads:
+        save_payload_to_file(process_membership_payloads, graphql_dir, "process_group_memberships_all.json")
+
+
+def send_groups(
+    url: str,
+    groups_data: Dict[str, Any],
+    headers: Optional[Dict[str, str]] = None,
+) -> None:
+    """
+    Send all group-related mutations in a sensible order:
+      1) create node groups
+      2) create process groups
+      3) add nodes to groups
+      4) add processes to groups
+    """
+    if not (groups_data["node_groups"] or groups_data["process_groups"] or
+            groups_data["node_memberships"] or groups_data["process_memberships"]):
+        print("No group data to send.")
+        return
+
+    # 1) create node groups
+    for name in groups_data["node_groups"]:
+        print(f"\nCreating node group: {name}")
+        payload = build_create_node_group_payload(name)
+        send_graphql_payload(url, payload, headers=headers)
+
+    # 2) create process groups
+    for name in groups_data["process_groups"]:
+        print(f"\nCreating process group: {name}")
+        payload = build_create_process_group_payload(name)
+        send_graphql_payload(url, payload, headers=headers)
+
+    # 3) add nodes to groups
+    for m in groups_data["node_memberships"]:
+        print(f"\nAdding node {m['nodeName']} to group {m['groupName']}")
+        payload = build_add_node_to_group_payload(m["nodeName"], m["groupName"])
+        send_graphql_payload(url, payload, headers=headers)
+
+    # 4) add processes to groups
+    for m in groups_data["process_memberships"]:
+        print(f"\nAdding process {m['processName']} to group {m['groupName']}")
+        payload = build_add_process_to_group_payload(m["processName"], m["groupName"])
+        send_graphql_payload(url, payload, headers=headers)
