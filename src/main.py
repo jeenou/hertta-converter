@@ -10,18 +10,21 @@ from parse_nodes import (
 )
 from parse_processes import parse_processes_csv_to_newprocesses
 from parse_groups import parse_groups_csv
+from parse_topologies import parse_process_topologies_csv_to_inputs
 from graphql_utils import (
     build_setup_payload,
     save_payload_to_file,
     save_node_payloads_to_files,
     save_node_state_payloads_to_files,
     save_process_payloads_to_files,
-        save_group_payloads_to_files,
+    save_group_payloads_to_files,
+    save_topology_payloads_to_files,
     send_setup,
     send_nodes,
     send_node_states,
     send_processes,
     send_groups,
+    send_topologies,
 )
 
 # --- Config ---
@@ -93,6 +96,19 @@ def main(excel_file: str) -> None:
 
     save_process_payloads_to_files(processes_inputs, dirs["graphql"])
 
+        # ---------- process_topologies.csv → createTopology calls ----------
+
+    topo_csv_path = os.path.join(dirs["csv"], "process_topology.csv")
+    print(f"\nReading process topologies from: {topo_csv_path}")
+    topo_calls = parse_process_topologies_csv_to_inputs(topo_csv_path)
+
+    print(f"\nParsed {len(topo_calls)} process topologies.")
+    if topo_calls:
+        print("Example first topology call:")
+        print(json.dumps(topo_calls[0], indent=2))
+
+    save_topology_payloads_to_files(topo_calls, dirs["graphql"])
+
         # ---------- groups.csv → groups & memberships ----------
 
     groups_csv_path = os.path.join(dirs["csv"], "groups.csv")
@@ -125,7 +141,10 @@ def main(excel_file: str) -> None:
 
         print("\nSending group mutations to GraphQL")
         send_groups(GRAPHQL_URL, groups_data, headers=GRAPHQL_HEADERS)
-        
+
+        print(f"\nSending {len(topo_calls)} topology mutations to {GRAPHQL_URL}")
+        send_topologies(GRAPHQL_URL, topo_calls, headers=GRAPHQL_HEADERS)
+
     print("\nAll done.")
 
 

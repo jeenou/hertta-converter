@@ -1,0 +1,563 @@
+[
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 1.4,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "solar_collector",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 18.75,
+        "vomCost": 556.5181732678991,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "fuel_ng",
+      "processName": "malervej_boiler1",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 15.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "malervej_boiler1",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 18.75,
+        "vomCost": 556.5181732678991,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "fuel_ng",
+      "processName": "malervej_boiler2",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 15.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "malervej_boiler2",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 18.75,
+        "vomCost": 601.0809612252569,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "fuel_oil",
+      "processName": "helges_hoj_boiler",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 15.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "helges_hoj_boiler",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 10.0,
+        "vomCost": 601.0809612252569,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "fuel_oil",
+      "processName": "molleholmen_boiler1",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 8.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "molleholmen_boiler1",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 10.0,
+        "vomCost": 601.0809612252569,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "fuel_oil",
+      "processName": "molleholmen_boiler2",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 8.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "molleholmen_boiler2",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 0.2666666666666666,
+        "vomCost": 129.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "elc",
+      "processName": "HP_rock",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 0.8,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "HP_rock",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 0.4666666666666666,
+        "vomCost": 129.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "elc",
+      "processName": "HP_EVC",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 1.4,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "HP_EVC",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 0.6666666666666666,
+        "vomCost": 129.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "elc",
+      "processName": "HP_EVC2",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 2.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "HP_EVC2",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 0.4333333333333333,
+        "vomCost": 129.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "elc",
+      "processName": "HP_City2",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 1.3,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "HP_City2",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 0.5,
+        "vomCost": 129.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "elc",
+      "processName": "HP_Nordea",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 1.5,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "HP_Nordea",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 0.5,
+        "vomCost": 129.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "elc",
+      "processName": "HP_Mohov",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 1.5,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "HP_Mohov",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 0.6666666666666666,
+        "vomCost": 129.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "elc",
+      "processName": "HP_globalconnect1",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 2.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "HP_globalconnect1",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 0.6666666666666666,
+        "vomCost": 129.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "elc",
+      "processName": "HP_globalconnect2",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 2.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "HP_globalconnect2",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 1.0666666666666669,
+        "vomCost": 129.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "elc",
+      "processName": "HP_copenhagen_markets",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 3.2,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "HP_copenhagen_markets",
+      "sinkNodeName": "dh_htf"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 1.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "veks_grid",
+      "processName": "pit_sto_charge",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 1.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "pit_sto_charge",
+      "sinkNodeName": "pit_heat_sto"
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 1.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": "pit_heat_sto",
+      "processName": "pit_sto_discharge",
+      "sinkNodeName": null
+    }
+  },
+  {
+    "query": "\nmutation CreateTopology(\n  $topology: NewTopology!\n  $sourceNodeName: String\n  $processName: String!\n  $sinkNodeName: String\n) {\n  createTopology(\n    topology: $topology\n    sourceNodeName: $sourceNodeName\n    processName: $processName\n    sinkNodeName: $sinkNodeName\n  ) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "topology": {
+        "capacity": 1.0,
+        "vomCost": 0.0,
+        "rampUp": 1.0,
+        "rampDown": 1.0,
+        "initialLoad": 0.7,
+        "initialFlow": 0.7,
+        "capTs": []
+      },
+      "sourceNodeName": null,
+      "processName": "pit_sto_discharge",
+      "sinkNodeName": "dh_htf"
+    }
+  }
+]

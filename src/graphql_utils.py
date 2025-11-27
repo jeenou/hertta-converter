@@ -432,3 +432,75 @@ def send_groups(
         print(f"\nAdding process {m['processName']} to group {m['groupName']}")
         payload = build_add_process_to_group_payload(m["processName"], m["groupName"])
         send_graphql_payload(url, payload, headers=headers)
+
+# 5) Process topologies (createTopology)
+
+_TOPOLOGY_MUTATION = """
+mutation CreateTopology(
+  $topology: NewTopology!
+  $sourceNodeName: String
+  $processName: String!
+  $sinkNodeName: String
+) {
+  createTopology(
+    topology: $topology
+    sourceNodeName: $sourceNodeName
+    processName: $processName
+    sinkNodeName: $sinkNodeName
+  ) {
+    errors {
+      field
+      message
+    }
+  }
+}
+"""
+
+
+def build_topology_payload(call_input: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    call_input: {
+      "processName": str,
+      "sourceNodeName": str | None,
+      "sinkNodeName": str | None,
+      "topology": { ... NewTopology fields ... }
+    }
+    """
+    vars_ = {
+        "topology": call_input["topology"],
+        "sourceNodeName": call_input.get("sourceNodeName"),
+        "processName": call_input["processName"],
+        "sinkNodeName": call_input.get("sinkNodeName"),
+    }
+    return build_graphql_payload(_TOPOLOGY_MUTATION, vars_)
+
+
+def save_topology_payloads_to_files(
+    topo_calls: List[Dict[str, Any]],
+    graphql_dir: str,
+) -> None:
+    """
+    Save one combined JSON file with all topology create calls.
+    """
+    if not topo_calls:
+        return
+
+    payloads = [build_topology_payload(t) for t in topo_calls]
+    save_payload_to_file(payloads, graphql_dir, "topologies_all.json")
+
+
+def send_topologies(
+    url: str,
+    topo_calls: List[Dict[str, Any]],
+    headers: Optional[Dict[str, str]] = None,
+) -> None:
+    """
+    Send createTopology for each topology definition.
+    """
+    for t in topo_calls:
+        print(
+            f"\nSending topology: process={t['processName']}, "
+            f"source={t.get('sourceNodeName')}, sink={t.get('sinkNodeName')}"
+        )
+        payload = build_topology_payload(t)
+        send_graphql_payload(url, payload, headers=headers)
