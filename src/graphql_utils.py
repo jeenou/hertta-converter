@@ -58,7 +58,7 @@ def send_graphql_payload(
 
 
 def save_payload_to_file(
-    payload: Dict[str, Any],
+    payload: Any,          # <- allow dict OR list
     graphql_dir: str,
     filename: str,
 ) -> str:
@@ -155,4 +155,81 @@ def send_nodes(
     for node in nodes_inputs:
         print(f"\nSending node: {node.get('name')}")
         payload = build_node_payload(node)
+        send_graphql_payload(url, payload, headers=headers)
+
+
+# 3) Node state (setNodeState)
+
+_STATE_MUTATION = """
+mutation SetNodeState($nodeName: String!, $state: NewState) {
+  setNodeState(state: $state, nodeName: $nodeName) {
+    errors {
+      field
+      message
+    }
+  }
+}
+"""
+
+
+def build_node_state_payload(node_name: str, state_input: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Build payload for setting state of a single node.
+      variables = { nodeName: "...", state: { ...NewState fields... } }
+    """
+    variables = {
+        "nodeName": node_name,
+        "state": state_input,
+    }
+    return build_graphql_payload(_STATE_MUTATION, variables)
+
+
+def save_node_state_payloads_to_files(
+    node_states: List[Dict[str, Any]],
+    graphql_dir: str,
+):
+    """
+    node_states: list of {"nodeName": <str>, "state": <NewState dict>}
+    Saves one JSON per node and one combined JSON.
+    """
+    os.makedirs(graphql_dir, exist_ok=True)
+
+    all_payloads: List[Dict[str, Any]] = []
+
+    for item in node_states:
+        node_name = item.get("nodeName", "node")
+        state = item.get("state", {})
+
+        safe = "".join(
+            c for c in node_name if c.isalnum() or c in ("_", "-", " ")
+        ).strip()
+        if not safe:
+            safe = "node"
+        safe = safe.replace(" ", "_")
+
+        payload = build_node_state_payload(node_name, state)
+        all_payloads.append(payload)
+
+        filename = f"node_state_{safe}.json"
+        save_payload_to_file(payload, graphql_dir, filename)
+
+    save_payload_to_file(all_payloads, graphql_dir, "node_states_all.json")
+
+
+def send_node_states(
+    url: str,
+    node_states: List[Dict[str, Any]],
+    headers: Optional[Dict[str, str]] = None,
+):
+    """
+    Send setNodeState mutation for all given node states, one by one.
+    node_states: list of {"nodeName": <str>, "state": <NewState dict>}
+    """
+    for item in node_states:
+        node_name = item.get("nodeName")
+        state = item.get("state")
+        if not node_name or state is None:
+            continue
+        print(f"\nSending node state for: {node_name}")
+        payload = build_node_state_payload(node_name, state)
         send_graphql_payload(url, payload, headers=headers)

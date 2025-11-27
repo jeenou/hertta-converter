@@ -4,13 +4,18 @@ import json
 
 from excel_to_csv import create_folder_structure, excel_to_csv
 from parse_setup import parse_setup_csv_to_inputdatasetup
-from parse_nodes import parse_nodes_csv_to_newnodes
+from parse_nodes import (
+    parse_nodes_csv_to_newnodes,
+    parse_node_states_from_nodes_csv,   
+)
 from graphql_utils import (
     build_setup_payload,
     save_payload_to_file,
     save_node_payloads_to_files,
+    save_node_state_payloads_to_files,  
     send_setup,
     send_nodes,
+    send_node_states,                   
 )
 
 # --- Config ---
@@ -19,17 +24,15 @@ GRAPHQL_URL = "http://localhost:3030/graphql"
 GRAPHQL_HEADERS = {
     # "Authorization": "Bearer YOUR_TOKEN_HERE",
 }
-SEND_TO_SERVER = True  # set to True when you want to actually POST to GraphQL
+SEND_TO_SERVER = True  # toggle if you don't want to actually POST to GraphQL
 
 
 def main(excel_file: str) -> None:
     excel_path = os.path.abspath(excel_file)
     base_dir = os.path.dirname(excel_path)
 
-    # 1) Create /output/csv + /output/graphql
     dirs = create_folder_structure(base_dir)
 
-    # 2) Convert Excel → CSV files into output/csv
     excel_to_csv(excel_path, dirs["csv"])
 
     # ---------- setup.csv → InputDataSetupInput ----------
@@ -59,6 +62,19 @@ def main(excel_file: str) -> None:
     # Build and save node payloads
     save_node_payloads_to_files(nodes_inputs, dirs["graphql"])
 
+    # ---------- nodes.csv → node states (NewState) ----------
+
+    print(f"\nReading node states from: {nodes_csv_path}")
+    node_states = parse_node_states_from_nodes_csv(nodes_csv_path)
+
+    print(f"\nParsed {len(node_states)} node states.")
+    if node_states:
+        print("Example first node state:")
+        print(json.dumps(node_states[0], indent=2))
+
+    # Build and save node state payloads
+    save_node_state_payloads_to_files(node_states, dirs["graphql"])
+
     # ---------- optionally send to GraphQL server ----------
 
     if SEND_TO_SERVER:
@@ -67,6 +83,9 @@ def main(excel_file: str) -> None:
 
         print(f"\nSending {len(nodes_inputs)} node mutations to {GRAPHQL_URL}")
         send_nodes(GRAPHQL_URL, nodes_inputs, headers=GRAPHQL_HEADERS)
+
+        print(f"\nSending {len(node_states)} node state mutations to {GRAPHQL_URL}")
+        send_node_states(GRAPHQL_URL, node_states, headers=GRAPHQL_HEADERS)
 
     print("\nAll done.")
 

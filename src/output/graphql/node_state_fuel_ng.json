@@ -1,0 +1,18 @@
+{
+  "query": "\nmutation SetNodeState($nodeName: String!, $state: NewState) {\n  setNodeState(state: $state, nodeName: $nodeName) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+  "variables": {
+    "nodeName": "fuel_ng",
+    "state": {
+      "inMax": 0.0,
+      "outMax": 0.0,
+      "stateLossProportional": 0.0,
+      "stateMin": 0.0,
+      "stateMax": 0.0,
+      "initialState": 0.0,
+      "isScenarioIndependent": false,
+      "isTemp": false,
+      "tEConversion": 1.0,
+      "residualValue": 0.0
+    }
+  }
+}

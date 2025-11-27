@@ -1,0 +1,18 @@
+{
+  "query": "\nmutation SetNodeState($nodeName: String!, $state: NewState) {\n  setNodeState(state: $state, nodeName: $nodeName) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+  "variables": {
+    "nodeName": "pit_heat_sto",
+    "state": {
+      "inMax": 30.0,
+      "outMax": 30.0,
+      "stateLossProportional": 1e-05,
+      "stateMin": 0.0,
+      "stateMax": 3300.0,
+      "initialState": 800.0,
+      "isScenarioIndependent": false,
+      "isTemp": false,
+      "tEConversion": 1.0,
+      "residualValue": 0.0
+    }
+  }
+}
