@@ -1,0 +1,13 @@
+{
+  "query": "\nmutation CreateNode($node: NewNode!) {\n  createNode(node: $node) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+  "variables": {
+    "node": {
+      "name": "fuel_oil",
+      "isCommodity": true,
+      "isMarket": false,
+      "isRes": false,
+      "cost": [],
+      "inflow": []
+    }
+  }
+}

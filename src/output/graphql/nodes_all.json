@@ -1,0 +1,80 @@
+[
+  {
+    "query": "\nmutation CreateNode($node: NewNode!) {\n  createNode(node: $node) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "node": {
+        "name": "fuel_oil",
+        "isCommodity": true,
+        "isMarket": false,
+        "isRes": false,
+        "cost": [],
+        "inflow": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateNode($node: NewNode!) {\n  createNode(node: $node) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "node": {
+        "name": "fuel_ng",
+        "isCommodity": true,
+        "isMarket": false,
+        "isRes": false,
+        "cost": [],
+        "inflow": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateNode($node: NewNode!) {\n  createNode(node: $node) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "node": {
+        "name": "elc",
+        "isCommodity": false,
+        "isMarket": false,
+        "isRes": false,
+        "cost": [],
+        "inflow": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateNode($node: NewNode!) {\n  createNode(node: $node) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "node": {
+        "name": "veks_grid",
+        "isCommodity": true,
+        "isMarket": false,
+        "isRes": false,
+        "cost": [],
+        "inflow": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateNode($node: NewNode!) {\n  createNode(node: $node) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "node": {
+        "name": "dh_htf",
+        "isCommodity": false,
+        "isMarket": false,
+        "isRes": false,
+        "cost": [],
+        "inflow": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateNode($node: NewNode!) {\n  createNode(node: $node) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "node": {
+        "name": "pit_heat_sto",
+        "isCommodity": false,
+        "isMarket": false,
+        "isRes": false,
+        "cost": [],
+        "inflow": []
+      }
+    }
+  }
+]
