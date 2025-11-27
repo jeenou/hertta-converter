@@ -11,6 +11,8 @@ from parse_nodes import (
 from parse_processes import parse_processes_csv_to_newprocesses
 from parse_groups import parse_groups_csv
 from parse_topologies import parse_process_topologies_csv_to_inputs
+from parse_cf import parse_cf_csv_to_process_cf
+from parse_inflow import parse_inflow_csv_to_node_inflow
 from graphql_utils import (
     build_setup_payload,
     save_payload_to_file,
@@ -69,6 +71,24 @@ def main(excel_file: str) -> None:
         print("Example first node:")
         print(json.dumps(nodes_inputs[0], indent=2))
 
+
+    # ---------- inflow.csv → node inflow (ForecastValueInput) ----------
+
+    inflow_csv_path = os.path.join(dirs["csv"], "inflow.csv")  # adjust if sheet name differs
+    print(f"\nReading node inflow from: {inflow_csv_path}")
+    inflow_map = parse_inflow_csv_to_node_inflow(inflow_csv_path)
+
+    if inflow_map:
+        for node in nodes_inputs:
+            name = node.get("name")
+            if name in inflow_map:
+                node["inflow"] = inflow_map[name]
+        print("Attached inflow to nodes where available.")
+        print("Example first node after inflow:")
+        print(json.dumps(nodes_inputs[0], indent=2))
+    else:
+        print("No inflow data found; leaving node inflow arrays empty.")
+
     save_node_payloads_to_files(nodes_inputs, dirs["graphql"])
 
     # ---------- nodes.csv → node states (NewState) ----------
@@ -94,6 +114,25 @@ def main(excel_file: str) -> None:
         print("Example first process:")
         print(json.dumps(processes_inputs[0], indent=2))
 
+        # ---------- cf.csv → process CF time series ----------
+
+    cf_csv_path = os.path.join(dirs["csv"], "cf.csv")
+    print(f"\nReading process CF from: {cf_csv_path}")
+    cf_map = parse_cf_csv_to_process_cf(cf_csv_path)
+
+    # Attach CF to matching processes
+    if cf_map:
+        for proc in processes_inputs:
+            name = proc.get("name")
+            if name in cf_map:
+                proc["cf"] = cf_map[name]
+        print("Attached CF to processes where available.")
+        print("Example first process after CF:")
+        print(json.dumps(processes_inputs[0], indent=2))
+    else:
+        print("No CF data found; leaving process cf arrays empty.")
+
+    # Save process payloads (now with cf)
     save_process_payloads_to_files(processes_inputs, dirs["graphql"])
 
         # ---------- process_topologies.csv → createTopology calls ----------

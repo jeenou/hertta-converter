@@ -17,7 +17,12 @@
       "maxOffline": 0.0,
       "initialState": false,
       "isScenarioIndependent": false,
-      "cf": [],
+      "cf": [
+        {
+          "scenario": null,
+          "constant": 0.0
+        }
+      ],
       "effTs": [],
       "effOpsFun": []
     }
