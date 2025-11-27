@@ -1,0 +1,427 @@
+[
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "solar_collector",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 1.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "malervej_boiler1",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 0.8,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "malervej_boiler2",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 0.8,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "helges_hoj_boiler",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 0.8,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "molleholmen_boiler1",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 0.8,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "molleholmen_boiler2",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 0.8,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "HP_rock",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 3.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "HP_EVC",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 3.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "HP_City2",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 3.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "HP_Nordea",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 3.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "HP_Mohov",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 3.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "HP_globalconnect1",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 3.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "HP_globalconnect2",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 3.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "HP_EVC2",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 3.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "HP_copenhagen_markets",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 3.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "pit_sto_charge",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 1.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "process": {
+        "name": "pit_sto_discharge",
+        "conversion": "UNIT",
+        "isCfFix": false,
+        "isOnline": false,
+        "isRes": false,
+        "eff": 1.0,
+        "loadMin": 0.0,
+        "loadMax": 1.0,
+        "startCost": 0.0,
+        "minOnline": 0.0,
+        "maxOnline": 0.0,
+        "minOffline": 0.0,
+        "maxOffline": 0.0,
+        "initialState": false,
+        "isScenarioIndependent": false,
+        "cf": [],
+        "effTs": [],
+        "effOpsFun": []
+      }
+    }
+  }
+]

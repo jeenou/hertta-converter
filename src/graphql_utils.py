@@ -233,3 +233,62 @@ def send_node_states(
         print(f"\nSending node state for: {node_name}")
         payload = build_node_state_payload(node_name, state)
         send_graphql_payload(url, payload, headers=headers)
+
+# 4) Processes (createProcess)
+
+_PROCESS_MUTATION = """
+mutation CreateProcess($process: NewProcess!) {
+  createProcess(process: $process) {
+    errors {
+      field
+      message
+    }
+  }
+}
+"""
+
+
+def build_process_payload(process_input: Dict[str, Any]) -> Dict[str, Any]:
+    return build_graphql_payload(_PROCESS_MUTATION, {"process": process_input})
+
+
+def save_process_payloads_to_files(
+    processes_inputs: List[Dict[str, Any]],
+    graphql_dir: str,
+):
+    """
+    Save one JSON file per process and one combined file with all process payloads.
+    """
+    os.makedirs(graphql_dir, exist_ok=True)
+
+    all_payloads: List[Dict[str, Any]] = []
+
+    for proc in processes_inputs:
+        name = proc.get("name", "process")
+        safe = "".join(c for c in name if c.isalnum() or c in ("_", "-", " ")).strip()
+        if not safe:
+            safe = "process"
+        safe = safe.replace(" ", "_")
+
+        payload = build_process_payload(proc)
+        all_payloads.append(payload)
+
+        filename = f"process_{safe}.json"
+        save_payload_to_file(payload, graphql_dir, filename)
+
+    save_payload_to_file(all_payloads, graphql_dir, "processes_all.json")
+
+
+def send_processes(
+    url: str,
+    processes_inputs: List[Dict[str, Any]],
+    headers: Optional[Dict[str, str]] = None,
+):
+    """
+    Send createProcess mutation for all processes, one by one.
+    """
+    for proc in processes_inputs:
+        print(f"\nSending process: {proc.get('name')}")
+        payload = build_process_payload(proc)
+        send_graphql_payload(url, payload, headers=headers)
+

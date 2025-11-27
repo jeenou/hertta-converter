@@ -1,0 +1,25 @@
+{
+  "query": "\nmutation CreateProcess($process: NewProcess!) {\n  createProcess(process: $process) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+  "variables": {
+    "process": {
+      "name": "malervej_boiler1",
+      "conversion": "UNIT",
+      "isCfFix": false,
+      "isOnline": false,
+      "isRes": false,
+      "eff": 0.8,
+      "loadMin": 0.0,
+      "loadMax": 1.0,
+      "startCost": 0.0,
+      "minOnline": 0.0,
+      "maxOnline": 0.0,
+      "minOffline": 0.0,
+      "maxOffline": 0.0,
+      "initialState": false,
+      "isScenarioIndependent": false,
+      "cf": [],
+      "effTs": [],
+      "effOpsFun": []
+    }
+  }
+}
