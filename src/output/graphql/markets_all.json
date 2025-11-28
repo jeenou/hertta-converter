@@ -1,0 +1,59 @@
+[
+  {
+    "query": "\nmutation CreateMarket($market: NewMarket!) {\n  createMarket(market: $market) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "market": {
+        "name": "elc_spot",
+        "mType": "ENERGY",
+        "node": "elc",
+        "processGroup": "p1",
+        "direction": null,
+        "realisation": [
+          {
+            "scenario": null,
+            "constant": 0.0
+          }
+        ],
+        "reserveType": "none",
+        "isBid": false,
+        "isLimited": false,
+        "minBid": 0.0,
+        "maxBid": 0.0,
+        "fee": 0.0,
+        "price": [
+          {
+            "scenario": null,
+            "series": [
+              2.01,
+              1.38,
+              0.09,
+              0.08,
+              0.05,
+              0.08,
+              0.09,
+              0.53,
+              2.03,
+              3.1,
+              4.43,
+              6.06,
+              6.06,
+              5.68,
+              17.71,
+              24.11,
+              36.54,
+              46.03,
+              55.57,
+              54.95,
+              49.23,
+              44.99,
+              45.96
+            ]
+          }
+        ],
+        "upPrice": [],
+        "downPrice": [],
+        "reserveActivationPrice": []
+      }
+    }
+  }
+]

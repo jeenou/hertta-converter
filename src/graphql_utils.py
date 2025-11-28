@@ -1,11 +1,8 @@
 import json
 import os
 from typing import Dict, Any, Optional, List
-
 import requests
 
-
-# ---------- Core reusable helpers ----------
 
 def build_graphql_payload(mutation: str, variables: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -75,7 +72,7 @@ def save_payload_to_file(
 
 # ---------- Convenience helpers for your existing mutations ----------
 
-# 1) InputDataSetupInput
+# InputDataSetupInput
 
 _SETUP_MUTATION = """
 mutation CreateInputDataSetup($setup: InputDataSetupInput!) {
@@ -102,7 +99,7 @@ def send_setup(
     return send_graphql_payload(url, payload, headers=headers)
 
 
-# 2) NewNode
+# NewNode
 
 _NODE_MUTATION = """
 mutation CreateNode($node: NewNode!) {
@@ -158,7 +155,7 @@ def send_nodes(
         send_graphql_payload(url, payload, headers=headers)
 
 
-# 3) Node state (setNodeState)
+# Node state (setNodeState)
 
 _STATE_MUTATION = """
 mutation SetNodeState($nodeName: String!, $state: NewState) {
@@ -234,7 +231,7 @@ def send_node_states(
         payload = build_node_state_payload(node_name, state)
         send_graphql_payload(url, payload, headers=headers)
 
-# 4) Processes (createProcess)
+# Processes (createProcess)
 
 _PROCESS_MUTATION = """
 mutation CreateProcess($process: NewProcess!) {
@@ -292,7 +289,7 @@ def send_processes(
         payload = build_process_payload(proc)
         send_graphql_payload(url, payload, headers=headers)
 
-# 5) Groups (createNodeGroup / createProcessGroup / addNodeToGroup / addProcessToGroup)
+# Groups (createNodeGroup / createProcessGroup / addNodeToGroup / addProcessToGroup)
 
 _NODE_GROUP_MUTATION = """
 mutation CreateNodeGroup($name: String!) {
@@ -433,7 +430,7 @@ def send_groups(
         payload = build_add_process_to_group_payload(m["processName"], m["groupName"])
         send_graphql_payload(url, payload, headers=headers)
 
-# 5) Process topologies (createTopology)
+# Process topologies (createTopology)
 
 _TOPOLOGY_MUTATION = """
 mutation CreateTopology(
@@ -504,3 +501,69 @@ def send_topologies(
         )
         payload = build_topology_payload(t)
         send_graphql_payload(url, payload, headers=headers)
+
+
+# Markets (createMarket)
+
+_MARKET_MUTATION = """
+mutation CreateMarket($market: NewMarket!) {
+  createMarket(market: $market) {
+    errors {
+      field
+      message
+    }
+  }
+}
+"""
+
+
+def build_market_payload(market_input: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Build GraphQL payload for a single NewMarket input.
+    """
+    return build_graphql_payload(_MARKET_MUTATION, {"market": market_input})
+
+
+def save_market_payloads_to_files(
+    markets_inputs: List[Dict[str, Any]],
+    graphql_dir: str,
+) -> None:
+    """
+    Save one JSON file per market and one combined file with all market payloads.
+    """
+    if not markets_inputs:
+        return
+
+    os.makedirs(graphql_dir, exist_ok=True)
+
+    all_payloads: List[Dict[str, Any]] = []
+
+    for market in markets_inputs:
+        name = market.get("name", "market")
+        safe = "".join(c for c in name if c.isalnum() or c in ("_", "-", " ")).strip()
+        if not safe:
+            safe = "market"
+        safe = safe.replace(" ", "_")
+
+        payload = build_market_payload(market)
+        all_payloads.append(payload)
+
+        filename = f"market_{safe}.json"
+        save_payload_to_file(payload, graphql_dir, filename)
+
+    save_payload_to_file(all_payloads, graphql_dir, "markets_all.json")
+
+
+def send_markets(
+    url: str,
+    markets_inputs: List[Dict[str, Any]],
+    headers: Optional[Dict[str, str]] = None,
+) -> None:
+    """
+    Send createMarket mutation for all markets, one by one.
+    """
+    for market in markets_inputs:
+        print(f"\nSending market: {market.get('name')}")
+        payload = build_market_payload(market)
+        send_graphql_payload(url, payload, headers=headers)
+

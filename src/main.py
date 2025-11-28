@@ -14,6 +14,8 @@ from parse_topologies import parse_process_topologies_csv_to_inputs
 from parse_cf import parse_cf_csv_to_process_cf
 from parse_inflow import parse_inflow_csv_to_node_inflow
 from parse_node_price import parse_node_price_csv_to_costs
+from parse_markets import parse_markets_csv_to_newmarkets
+from parse_market_prices import parse_market_prices_csv_to_prices
 from graphql_utils import (
     build_setup_payload,
     save_payload_to_file,
@@ -28,6 +30,8 @@ from graphql_utils import (
     send_processes,
     send_groups,
     send_topologies,
+    save_market_payloads_to_files,
+    send_markets,
 )
 
 # --- Config ---
@@ -180,6 +184,37 @@ def main(excel_file: str) -> None:
 
     save_group_payloads_to_files(groups_data, dirs["graphql"])
 
+        # ---------- markets.csv → NewMarket inputs ----------
+    
+    markets_csv_path = os.path.join(dirs["csv"], "markets.csv")
+    print(f"\nReading markets from: {markets_csv_path}")
+    markets_inputs = parse_markets_csv_to_newmarkets(markets_csv_path)
+
+        # ---------- market_prices.csv → market.price (ForecastValueInput) ----------
+
+    market_prices_csv_path = os.path.join(dirs["csv"], "market_prices.csv")
+    print(f"\nReading market prices from: {market_prices_csv_path}")
+    market_price_map = parse_market_prices_csv_to_prices(market_prices_csv_path)
+
+    if market_price_map:
+        for market in markets_inputs:
+            name = market.get("name")
+            if name in market_price_map:
+                market["price"] = market_price_map[name]
+        print("Attached price time series to markets where available.")
+        if markets_inputs:
+            print("Example first market after prices:")
+            print(json.dumps(markets_inputs[0], indent=2))
+    else:
+        print("No market price data found; leaving market price arrays empty.")
+
+    print(f"\nParsed {len(markets_inputs)} markets.")
+    if markets_inputs:
+        print("Example first market:")
+        print(json.dumps(markets_inputs[0], indent=2))
+
+    save_market_payloads_to_files(markets_inputs, dirs["graphql"])
+
 
     if SEND_TO_SERVER:
         print(f"\nSending setup mutation to {GRAPHQL_URL}")
@@ -199,6 +234,9 @@ def main(excel_file: str) -> None:
 
         print(f"\nSending {len(topo_calls)} topology mutations to {GRAPHQL_URL}")
         send_topologies(GRAPHQL_URL, topo_calls, headers=GRAPHQL_HEADERS)
+
+        print(f"\nSending {len(markets_inputs)} market mutations to {GRAPHQL_URL}")
+        send_markets(GRAPHQL_URL, markets_inputs, headers=GRAPHQL_HEADERS)
 
     print("\nAll done.")
 
