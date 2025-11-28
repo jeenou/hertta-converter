@@ -7,7 +7,12 @@
         "isCommodity": true,
         "isMarket": false,
         "isRes": false,
-        "cost": [],
+        "cost": [
+          {
+            "scenario": null,
+            "constant": 170.70604466410953
+          }
+        ],
         "inflow": []
       }
     }
@@ -20,7 +25,12 @@
         "isCommodity": true,
         "isMarket": false,
         "isRes": false,
-        "cost": [],
+        "cost": [
+          {
+            "scenario": null,
+            "constant": 53.02752
+          }
+        ],
         "inflow": []
       }
     }
@@ -46,7 +56,12 @@
         "isCommodity": true,
         "isMarket": false,
         "isRes": false,
-        "cost": [],
+        "cost": [
+          {
+            "scenario": null,
+            "constant": 107.46
+          }
+        ],
         "inflow": []
       }
     }

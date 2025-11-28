@@ -13,6 +13,7 @@ from parse_groups import parse_groups_csv
 from parse_topologies import parse_process_topologies_csv_to_inputs
 from parse_cf import parse_cf_csv_to_process_cf
 from parse_inflow import parse_inflow_csv_to_node_inflow
+from parse_node_price import parse_node_price_csv_to_costs
 from graphql_utils import (
     build_setup_payload,
     save_payload_to_file,
@@ -35,7 +36,7 @@ GRAPHQL_URL = "http://localhost:3030/graphql"
 GRAPHQL_HEADERS = {
     # "Authorization": "Bearer YOUR_TOKEN_HERE",
 }
-SEND_TO_SERVER = True  # toggle if you don't want to actually POST
+SEND_TO_SERVER = True
 
 
 def main(excel_file: str) -> None:
@@ -71,10 +72,27 @@ def main(excel_file: str) -> None:
         print("Example first node:")
         print(json.dumps(nodes_inputs[0], indent=2))
 
+    # ---------- price.csv → node cost (ValueInput) ----------
+
+    price_csv_path = os.path.join(dirs["csv"], "price.csv")
+    print(f"\nReading node prices from: {price_csv_path}")
+    node_price_map = parse_node_price_csv_to_costs(price_csv_path)
+
+    if node_price_map:
+        for node in nodes_inputs:
+            name = node.get("name")
+            if name in node_price_map:
+                node["cost"] = node_price_map[name]
+        print("Attached node prices to nodes where available.")
+        print("Example first node after prices:")
+        print(json.dumps(nodes_inputs[0], indent=2))
+    else:
+        print("No node price data found; leaving node cost arrays (cost) as-is.")
+
 
     # ---------- inflow.csv → node inflow (ForecastValueInput) ----------
 
-    inflow_csv_path = os.path.join(dirs["csv"], "inflow.csv")  # adjust if sheet name differs
+    inflow_csv_path = os.path.join(dirs["csv"], "inflow.csv")
     print(f"\nReading node inflow from: {inflow_csv_path}")
     inflow_map = parse_inflow_csv_to_node_inflow(inflow_csv_path)
 
@@ -132,7 +150,6 @@ def main(excel_file: str) -> None:
     else:
         print("No CF data found; leaving process cf arrays empty.")
 
-    # Save process payloads (now with cf)
     save_process_payloads_to_files(processes_inputs, dirs["graphql"])
 
         # ---------- process_topologies.csv → createTopology calls ----------
@@ -163,7 +180,6 @@ def main(excel_file: str) -> None:
 
     save_group_payloads_to_files(groups_data, dirs["graphql"])
 
-    # ---------- optionally send to GraphQL server ----------
 
     if SEND_TO_SERVER:
         print(f"\nSending setup mutation to {GRAPHQL_URL}")

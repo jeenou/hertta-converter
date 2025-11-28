@@ -6,7 +6,12 @@
       "isCommodity": true,
       "isMarket": false,
       "isRes": false,
-      "cost": [],
+      "cost": [
+        {
+          "scenario": null,
+          "constant": 170.70604466410953
+        }
+      ],
       "inflow": []
     }
   }
