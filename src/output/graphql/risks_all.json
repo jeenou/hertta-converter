@@ -1,0 +1,20 @@
+[
+  {
+    "query": "\nmutation CreateRisk($risk: NewRisk!) {\n  createRisk(risk: $risk) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "risk": {
+        "parameter": "alfa",
+        "value": 0.1
+      }
+    }
+  },
+  {
+    "query": "\nmutation CreateRisk($risk: NewRisk!) {\n  createRisk(risk: $risk) {\n    errors {\n      field\n      message\n    }\n  }\n}\n",
+    "variables": {
+      "risk": {
+        "parameter": "beta",
+        "value": 0.0
+      }
+    }
+  }
+]

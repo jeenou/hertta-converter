@@ -16,6 +16,7 @@ from parse_inflow import parse_inflow_csv_to_node_inflow
 from parse_node_price import parse_node_price_csv_to_costs
 from parse_markets import parse_markets_csv_to_newmarkets
 from parse_market_prices import parse_market_prices_csv_to_prices
+from parse_risk import parse_risk_csv_to_newrisks
 from graphql_utils import (
     build_setup_payload,
     save_payload_to_file,
@@ -32,6 +33,8 @@ from graphql_utils import (
     send_topologies,
     save_market_payloads_to_files,
     send_markets,
+    save_risk_payloads_to_files, 
+    send_risks,
 )
 
 # --- Config ---
@@ -215,6 +218,19 @@ def main(excel_file: str) -> None:
 
     save_market_payloads_to_files(markets_inputs, dirs["graphql"])
 
+        # ---------- risk.csv → NewRisk inputs ----------
+
+    risk_csv_path = os.path.join(dirs["csv"], "risk.csv")  # sheet "risk" -> risk.csv
+    print(f"\nReading risk from: {risk_csv_path}")
+    risks_inputs = parse_risk_csv_to_newrisks(risk_csv_path)
+
+    print(f"\nParsed {len(risks_inputs)} risk parameters.")
+    if risks_inputs:
+        print("Risk data:")
+        print(json.dumps(risks_inputs, indent=2))
+
+    save_risk_payloads_to_files(risks_inputs, dirs["graphql"])
+
 
     if SEND_TO_SERVER:
         print(f"\nSending setup mutation to {GRAPHQL_URL}")
@@ -237,6 +253,9 @@ def main(excel_file: str) -> None:
 
         print(f"\nSending {len(markets_inputs)} market mutations to {GRAPHQL_URL}")
         send_markets(GRAPHQL_URL, markets_inputs, headers=GRAPHQL_HEADERS)
+
+        print(f"\nSending {len(risks_inputs)} risk mutations to {GRAPHQL_URL}")
+        send_risks(GRAPHQL_URL, risks_inputs, headers=GRAPHQL_HEADERS)
 
     print("\nAll done.")
 

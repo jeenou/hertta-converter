@@ -567,3 +567,56 @@ def send_markets(
         payload = build_market_payload(market)
         send_graphql_payload(url, payload, headers=headers)
 
+# Risk (createRisk)
+
+_RISK_MUTATION = """
+mutation CreateRisk($risk: NewRisk!) {
+  createRisk(risk: $risk) {
+    errors {
+      field
+      message
+    }
+  }
+}
+"""
+
+
+def build_risk_payload(risk_input: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Build GraphQL payload for a single NewRisk input.
+    """
+    return build_graphql_payload(_RISK_MUTATION, {"risk": risk_input})
+
+
+def save_risk_payloads_to_files(
+    risks_inputs: List[Dict[str, Any]],
+    graphql_dir: str,
+) -> None:
+    """
+    Save one JSON with all risk payloads.
+    """
+    if not risks_inputs:
+        return
+
+    os.makedirs(graphql_dir, exist_ok=True)
+
+    payloads: List[Dict[str, Any]] = [
+        build_risk_payload(r) for r in risks_inputs
+    ]
+    save_payload_to_file(payloads, graphql_dir, "risks_all.json")
+
+
+def send_risks(
+    url: str,
+    risks_inputs: List[Dict[str, Any]],
+    headers: Optional[Dict[str, str]] = None,
+) -> None:
+    """
+    Send createRisk mutation for all risks, one by one.
+    """
+    for r in risks_inputs:
+        print(f"\nSending risk: {r.get('parameter')}")
+        payload = build_risk_payload(r)
+        send_graphql_payload(url, payload, headers=headers)
+
+
