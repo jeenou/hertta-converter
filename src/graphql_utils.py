@@ -619,4 +619,51 @@ def send_risks(
         payload = build_risk_payload(r)
         send_graphql_payload(url, payload, headers=headers)
 
+# Scenarios (createScenario)
+
+_SCENARIO_MUTATION = """
+mutation CreateScenario($name: String!, $weight: Float!) {
+  createScenario(name: $name, weight: $weight) {
+    message
+  }
+}
+"""
+
+
+def build_scenario_payload(name: str, weight: float) -> Dict[str, Any]:
+    variables = {"name": name, "weight": weight}
+    return build_graphql_payload(_SCENARIO_MUTATION, variables)
+
+
+def save_scenario_payloads_to_files(
+    scenarios: List[Dict[str, Any]],
+    graphql_dir: str,
+) -> None:
+    """
+    scenarios: list of {"name": str, "weight": float}
+    Saves one combined JSON with all scenario payloads.
+    """
+    if not scenarios:
+        return
+
+    payloads: List[Dict[str, Any]] = [
+        build_scenario_payload(s["name"], s["weight"]) for s in scenarios
+    ]
+    save_payload_to_file(payloads, graphql_dir, "scenarios_all.json")
+
+
+def send_scenarios(
+    url: str,
+    scenarios: List[Dict[str, Any]],
+    headers: Optional[Dict[str, str]] = None,
+) -> None:
+    """
+    Send createScenario for all scenarios, one by one.
+    """
+    for s in scenarios:
+        name = s["name"]
+        weight = s["weight"]
+        print(f"\nSending scenario: {name} (weight={weight})")
+        payload = build_scenario_payload(name, weight)
+        send_graphql_payload(url, payload, headers=headers)
 

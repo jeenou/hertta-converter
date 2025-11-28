@@ -1,0 +1,9 @@
+[
+  {
+    "query": "\nmutation CreateScenario($name: String!, $weight: Float!) {\n  createScenario(name: $name, weight: $weight) {\n    message\n  }\n}\n",
+    "variables": {
+      "name": "s1",
+      "weight": 1.0
+    }
+  }
+]

@@ -17,6 +17,7 @@ from parse_node_price import parse_node_price_csv_to_costs
 from parse_markets import parse_markets_csv_to_newmarkets
 from parse_market_prices import parse_market_prices_csv_to_prices
 from parse_risk import parse_risk_csv_to_newrisks
+from parse_scenarios import parse_scenarios_csv_to_list
 from graphql_utils import (
     build_setup_payload,
     save_payload_to_file,
@@ -35,6 +36,8 @@ from graphql_utils import (
     send_markets,
     save_risk_payloads_to_files, 
     send_risks,
+    save_scenario_payloads_to_files, 
+    send_scenarios,
 )
 
 # --- Config ---
@@ -231,10 +234,24 @@ def main(excel_file: str) -> None:
 
     save_risk_payloads_to_files(risks_inputs, dirs["graphql"])
 
+    scenarios_csv_path = os.path.join(dirs["csv"], "scenarios.csv")
+    print(f"\nReading scenarios from: {scenarios_csv_path}")
+    scenarios = parse_scenarios_csv_to_list(scenarios_csv_path)
+
+    print(f"\nParsed {len(scenarios)} scenarios.")
+    if scenarios:
+        print("Scenario data:")
+        print(json.dumps(scenarios, indent=2))
+
+    save_scenario_payloads_to_files(scenarios, dirs["graphql"])
+
 
     if SEND_TO_SERVER:
         print(f"\nSending setup mutation to {GRAPHQL_URL}")
         send_setup(GRAPHQL_URL, setup_input, headers=GRAPHQL_HEADERS)
+
+        print(f"\nSending {len(scenarios)} scenario mutations to {GRAPHQL_URL}")
+        send_scenarios(GRAPHQL_URL, scenarios, headers=GRAPHQL_HEADERS)
 
         print(f"\nSending {len(nodes_inputs)} node mutations to {GRAPHQL_URL}")
         send_nodes(GRAPHQL_URL, nodes_inputs, headers=GRAPHQL_HEADERS)
